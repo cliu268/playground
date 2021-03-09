@@ -1,4 +1,6 @@
 import math
+
+# # Q1
 def longestDigitRun(n):
     n = abs(n)
     x = 1
@@ -27,6 +29,31 @@ print(longestDigitRun(117773732))
 print(longestDigitRun(-677886))
 print(longestDigitRun(8888665544333321))
 
+# Q2
+def isPrime(n):
+    if n < 2: # 0 and 1
+        return(False)
+    elif n < 4: # 2 and 3
+        return(True)
+    else:
+        x = 2
+        while x < n:
+            if n % x == 0:
+                return(False)
+            x+=1
+        return(True)
+
+def isCircularPrime(n):
+    x = 1
+    input = n
+    while n % pow(10, x) < n:
+        x+=1
+    while isPrime(n):  
+        n = 10 * (n % pow(10, x-1)) + (n // pow(10, x-1))
+        if n == input:
+            return(True)
+    return(False)
+
 def nthCircularPrime(n):
     i = 0
     ans = 0
@@ -37,5 +64,8 @@ def nthCircularPrime(n):
                 return(ans)
             i+=1
         ans+=1
+print(nthCircularPrime(35))
+print(isCircularPrime(197))
 
-def nthPalindromicPrime(n):
+# def nthPalindromicPrime(n):
+#     return
