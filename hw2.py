@@ -25,9 +25,9 @@ def longestDigitRun(n):
             else:
                 return(final_ans)
         x+=1
-print(longestDigitRun(117773732))
-print(longestDigitRun(-677886))
-print(longestDigitRun(8888665544333321))
+# print(longestDigitRun(117773732))
+# print(longestDigitRun(-677886))
+# print(longestDigitRun(8888665544333321))
 
 # Q2
 def isPrime(n):
@@ -64,8 +64,41 @@ def nthCircularPrime(n):
                 return(ans)
             i+=1
         ans+=1
-print(nthCircularPrime(35))
-print(isCircularPrime(197))
+# print(nthCircularPrime(35))
+# print(isCircularPrime(197))
 
-# def nthPalindromicPrime(n):
-#     return
+# Q3
+def currentDigit(n, x):
+    return((n % pow(10, x)) // pow(10, x-1))
+
+def isPalindromic(n):
+    if n < 10:
+        return(True)
+    else:
+        # count number of digits in n
+        x = 1
+        y = 1
+        while n % pow(10, x) < n:
+            x+=1      
+        while y < x:
+            # x will be the left most digit and y be the right most digit
+            if currentDigit(n, x) != currentDigit(n, y):
+                return(False)            
+            x-=1
+            y+=1
+        return(True)
+
+def nthPalindromicPrime(n):
+    i = 0
+    ans = 0
+    while True:
+        #write a function to check if the number is a palindromic prime
+        if isPrime(ans) and isPalindromic(ans):
+            if i==n:
+                return(ans)
+            i+=1
+        ans+=1
+    return(ans)
+# print(nthPalindromicPrime(0))
+# print(nthPalindromicPrime(10))
+# print(nthPalindromicPrime(19))
