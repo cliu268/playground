@@ -102,3 +102,97 @@ def nthPalindromicPrime(n):
 # print(nthPalindromicPrime(0))
 # print(nthPalindromicPrime(10))
 # print(nthPalindromicPrime(19))
+
+# Q4
+def numberOfDigits(n):
+    x = 1
+    while n % pow(10, x) < n:
+            x+=1    
+    return(x)
+
+def carrylessAdd(x, y):
+    xcount = numberOfDigits(x)
+    ycount = numberOfDigits(y)
+    if xcount > ycount:
+        return((x // pow(10, ycount)) * pow(10, ycount) + carrylessAdd(x % pow(10, ycount), y))
+    elif xcount < ycount:
+        return((y // pow(10, xcount)) * pow(10, xcount) + carrylessAdd(y % pow(10, xcount), x))
+    else:
+        i = 1
+        ans = 0
+        while i <= xcount:
+            ans += (currentDigit(x, i) + currentDigit(y, i)) % 10 * pow(10, i-1)
+            i+=1
+        return(ans)
+# print(carrylessAdd(22785, 899376))
+
+# Q5
+def findZeroWithBisection(f, x0, x1, epsilon):
+    epsilon = abs(epsilon)
+    xmid = (x0 + x1) / 2
+    if x0 >= x1:
+        return(None)
+    elif f(x0) * f(x1) >= 0:
+        return(None)
+    elif x1 - x0 < epsilon:
+        return(xmid)
+    elif f(xmid) == 0:
+        return(xmid)
+    elif f(xmid) * f(x0) > 0: # f(xmid) and f(x0) are the same sign
+        return(findZeroWithBisection(f, xmid, x1, epsilon))
+    else:
+        return(findZeroWithBisection(f, x0, xmid, epsilon))
+# print("use bisection to approximate sqrt(2):")
+# def f1(x): return x*x - 2 # root at x=sqrt(2)
+# x = findZeroWithBisection(f1, 0, 2, 0.000000001)
+# print(" x =", x)                # prints  x = 1.41421356192
+# print(" check: x**2 =", (x*x))  # prints  check: x**2 = 1.99999999871 (really close!)
+
+# print("use bisection to approximate phi (the golden ratio):")
+# def f2(x): return x**2 - (x + 1) # root at x=phi
+# x = findZeroWithBisection(f2, 0, 2, 0.000000001)
+# print(" x =", x)                  # prints x = 1.61803398887
+# phi = (1 + 5**0.5)/2              # the actual value (to within Python's floating point accuracy)
+# print(" check: x/phi =", (x/phi)) # prints check: check: x/phi = 1.00000000007 (nice!)
+
+# print("use bisection to approximate x where x**5 == 2**x")
+# def f3(x): return x**5 - 2**x # f(1)<0, f(2)>0
+# x = findZeroWithBisection(f3, 1, 2, 0.000000001)
+# print(" x =", x)                              # prints x = 1.17727855081
+# print(" check: x**5 - 2**x =", (x**5 - 2**x)) # prints check: x**5 - 2**x = 3.63570817896e-09 (great!)
+
+# Q6
+def isKaprekarNumber(n):
+    sq = n*n
+    x = numberOfDigits(sq)
+    i = 1
+    while i <= x:
+        # two conditions, right part is not zero AND sum of two parts == n
+        if sq % pow(10, i) and n == sq // pow(10, i) + sq % pow(10, i):
+            return(True)
+        i+=1
+    return(False)
+
+def nthKaprekarNumber(n):
+    i = 0
+    ans = 1
+    while True:
+        #write a function to check if the number is a Kaprekar number
+        if isKaprekarNumber(ans):
+            if i==n:
+                return(ans)
+            i+=1
+        ans+=1
+    return(ans)
+# print(nthKaprekarNumber(0))
+# print(nthKaprekarNumber(1))
+# print(nthKaprekarNumber(2))
+# print(nthKaprekarNumber(3))
+# print(nthKaprekarNumber(4))
+# print(nthKaprekarNumber(5))
+# print(nthKaprekarNumber(6))
+# print(nthKaprekarNumber(7))
+# print(nthKaprekarNumber(8))
+# print(nthKaprekarNumber(9))
+# print(nthKaprekarNumber(10))
+# print(nthKaprekarNumber(11))
