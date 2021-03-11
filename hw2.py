@@ -1,6 +1,11 @@
 import math
 
-# # Q1
+# Q1
+# longestDigitRun [standard, 15 pts]
+# Write the function longestDigitRun(n) that takes a possibly-negative int value n and 
+# returns the digit that has the longest consecutive run, or the smallest such digit if there is a tie. 
+# So, longestDigitRun(117773732) returns 7 (because there is a run of 3 consecutive 7's), as does 
+# longestDigitRun(-677886).
 def longestDigitRun(n):
     n = abs(n)
     x = 1
@@ -30,6 +35,13 @@ def longestDigitRun(n):
 # print(longestDigitRun(8888665544333321))
 
 # Q2
+# nthCircularPrime [standard, 15 pts]
+# Write the function nthCircularPrime that takes a non-negative int n and returns the nth Circular prime,
+# which is a prime number that does not contain any 0's and such that all the numbers resulting from 
+# rotating its digits are also prime. 
+# The first Circular primes are 2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97, 113, 131, 197... 
+# To see why 197 is a Circular prime, note that 197 is prime, as is 971 (rotated left), as is 719 
+# (rotated left again).
 def isPrime(n):
     if n < 2: # 0 and 1
         return(False)
@@ -68,6 +80,10 @@ def nthCircularPrime(n):
 # print(isCircularPrime(197))
 
 # Q3
+# nthPalindromicPrime [standard, 15 pts]
+# Write the function nthPalindromicPrime(n), where a palindromic prime is a number that is both prime 
+# and palindromic (same forwards as backwards). See here for details. 
+# So nthPalindromicPrime(0) returns 2, and nthPalindromicPrime(10) returns 313.
 def currentDigit(n, x):
     return((n % pow(10, x)) // pow(10, x-1))
 
@@ -104,6 +120,13 @@ def nthPalindromicPrime(n):
 # print(nthPalindromicPrime(19))
 
 # Q4
+# carrylessAdd [required, 15 pts]
+# First, you may wish to read the first page (page 44) from here about Carryless Arithmetic. 
+# Or, just understand that carryless addition is what it sounds like -- regular addition, only with 
+# the carry from each column ignored. So, for example, if we carryless-ly add 8+7, we get 5 (ignore 
+# the carry). And if we add 18+27, we get 35 (still ignore the carry). With this in mind, write the 
+# function carrylessAdd(x, y) that takes two non-negative integers x and y and returns their carryless 
+# sum. As the paper demonstrates, carrylessAdd(785, 376) returns 51.
 def numberOfDigits(n):
     x = 1
     while n % pow(10, x) < n:
@@ -127,6 +150,25 @@ def carrylessAdd(x, y):
 # print(carrylessAdd(22785, 899376))
 
 # Q5
+# findZeroWithBisection [required, 15 pts]
+# Write the function findZeroWithBisection(f, x0, x1, epsilon) as described below:
+# In mathematics, one way to numerically (as opposed to algebraically) find a zero of a function f(x) 
+# is to use what amounts to binary search.  To start, we need to know two values, x0 and x1, with x0<x1, 
+# where f(x0) and f(x1) have different signs (so one is positive and the other is negative).  
+# Hence, by the Intermediate Value Theorem, we know there is some value x in the range [x0,x1] such 
+# that f(x)=0.  It is that value of x that we are seeking.  How?  First, try the value xmid, which is 
+# the midpoint between x0 and x1.  If f(xmid) is exactly 0, we are done!  Otherwise, we can divide our 
+# range in half as such:  if f(xmid) and f(x0) are the same sign, use the range [xmid, x1].  
+# Otherwise, f(xmid) and f(x1) must share the same sign, so use the range [x0, xmid].  We repeat this 
+# in a loop until x0 and x1 are within some suitably small epsilon.
+# 
+# With this in mind, write the function findZeroWithBisection that takes a function f, a float x0, 
+# a float x1, and a float epsilon, and returns an approximate value x in [x0,x1] where f(x) is 
+# approximately zero.  
+# Your function should stop when x0 and x1 are within epsilon, and at that time should return the 
+# midpoint of that range.  Note that if it is not true that exactly one of f(x0) and f(x1) is negative, 
+# your function should return the Python value None, signifying that the bisection method cannot be used 
+# on the given range.
 def findZeroWithBisection(f, x0, x1, epsilon):
     epsilon = abs(epsilon)
     xmid = (x0 + x1) / 2
@@ -162,6 +204,13 @@ def findZeroWithBisection(f, x0, x1, epsilon):
 # print(" check: x**5 - 2**x =", (x**5 - 2**x)) # prints check: x**5 - 2**x = 3.63570817896e-09 (great!)
 
 # Q6
+# nthKaprekarNumber [required, 15 pts]
+# Background: a Kaprekar number is a positive integer, the representation of whose square can be split 
+# into two possibly-different-length parts (where the right part is not zero) that add up to the 
+# original number again. For instance, 45 is a Kaprekar number, because 45**2 = 2025 and 20+25 = 45. 
+# The first several Kaprekar numbers are: 1, 9, 45, 55, 99, 297, 703, 999 , 2223, 2728,...
+# With this in mind, write the function nthKaprekarNumber(n) that takes a non-negative int n and 
+# returns the nth Kaprekar number, where as usual we start counting at n==0.
 def isKaprekarNumber(n):
     sq = n*n
     x = numberOfDigits(sq)
