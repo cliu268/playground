@@ -39,7 +39,23 @@ def isPalindrome(s):
 # returns None (the value None, not the string "None").
 # Hint: use isdigit
 def largestNumber(text):
-    return None
+    hasNumbers = False
+    ans = 0
+    temp = 0
+    for index in range(len(text)):
+        if text[index].isdigit():
+            hasNumbers = True
+            temp = temp * 10 + int(text[index])
+        elif ans < temp:
+            ans = temp
+            temp = 0
+        else:
+            temp = 0
+    # the following syntax is called ternary conditional operator
+    # it is the same as if you wrote if/else separately got it?
+    return ans if hasNumbers else None
+# print(largestNumber("I saw 3 dogs, 17 cats, and 14 cows!"))
+# print(largestNumber("One person ate two hot dogs!"))
 
 # Q3 
 # rotateStringLeft
@@ -49,7 +65,12 @@ def largestNumber(text):
 # assert(rotateStringLeft('abcd',  1) == 'bcda')
 # assert(rotateStringLeft('abcd', -1) == 'dabc')
 def rotateStringLeft(s, n):
-    return s
+    n = n % len(s)
+    return s[n:] + s[:n]
+# print(rotateStringLeft('abcdefgh', 13))
+# print(rotateStringLeft('abcdefgh', -13))
+# print(rotateStringLeft('abcd', 1))
+# print(rotateStringLeft('abcd', -1))
 
 # Q4
 # isRotation
@@ -57,5 +78,14 @@ def rotateStringLeft(s, n):
 # a rotation of the other. Note that a string is not considered a rotation of itself. 
 # Hint: The previous problem may be helpful here.
 def isRotation(s, t):
-    return True
+    if len(s) != len(t):
+        return False
+    elif s == t: # same string
+        return False
+    else:
+        for i in range(1, len(s)):
+            if s == rotateStringLeft(t, i):
+                return True
+        return False
+# print(isRotation('abcdef', 'cdefab'))
 
