@@ -62,20 +62,68 @@ def shiftRight(l, n):
 # 1. Returns the sum of the values of a given integer array
 # 2. Returns the decimal average of the elements of a given integer array
 # 3. Checks to see if an integer element exists in an integer array given the element and array
+def isInList(L, n):
+    return n in L
+# print(isInList([1,2,3,4,5], 5))    
+
 # 4. Returns another array with elements of the given array but in reverse order (w/o using built-in functions)
-# 5. Returns an integer array that has no duplicate values givenan integer arry (hint: loop multi-times)
+def reverseOrder(L):
+    for i in range(len(L)//2):
+        temp = L[i]
+        L[i] = L[len(L) - 1 - i]
+        L[len(L) - 1 - i] = temp
+    return L
+# print(reverseOrder([1,2,3,4,5,6]))
+
+# 5. Returns an integer array that has no duplicate values given an integer arry (hint: loop multi-times)
+def noDuplicate(L):
+    res = []
+    for i in L:
+        if i not in res:
+            res.append(i)
+    return res
+# print(noDuplicate([1,2,3,1,2,3,1,1,1,3,3,3,4,5,6,7,4,5,7,8,9,1]))
+
 # 6. Returns the second largest element in an integer array
 # 7. Given 2 arrays, checks to see if the arrays are equal (here the == doesn't work to compare arrays directly)
+def equalArray(L1, L2):
+    if len(L1) != len(L2):
+        return False
+    else:
+        for i in range(len(L1)):
+            if L1[i] != L2[i]:
+                return False
+        return True
+# print(equalArray([1,2,3,4,5], [1,2,3,4,5]))        
+
 # 8. Given an integer array, returns an array that contains the same numbers except all even numbers come 
 #    before all the odd numbers
-# 9. Given an non-empty integer array thatcontains the element 4, return a new array that contains the
+def evenBeforeOdd(L):
+    even = []
+    odd = []
+    for i in L:
+        if i % 2:
+            odd.append(i)
+        else:
+            even.append(i)
+    return even + odd
+# print(evenBeforeOdd([0,6,9,3,5,7,9,1,2,3,10,4,6,88]))
+
+# 9. Given an non-empty integer array that contains the element 4, return a new array that contains the
 #    elements from the original array that come before the first 4
+def elementBeforeFour(L):
+    return L[:L.index(4)]
+# print(elementBeforeFour([3,5,6,7,8,3,2,4,2,1]))
+
 #10. Given an integer array and a non-negative number n, return a integer array with the same elements as
 #    the input but shifted to the left by n. 
 #    ex: [1,2,3,4,5], n=2 -> [3,4,5,1,2] 
 #        [1,2,3,4], n=4 -> [1,2,3,4]
 #        [1,2,3,4], n=0 -> [1,2,3,4]
-
+def shiftLeft(l, n):
+    # shift to left by n means to shif to right by len-n
+    return shiftRight(l, len(l) - n)
+# print(shiftLeft([1,2,3,4,5,6], 2))
 
 # not covered questions
 # 1. Prints out the 2D integer array in a grid-like format
