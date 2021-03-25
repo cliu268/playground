@@ -27,10 +27,7 @@ def listSum(l):
 
 # Write a function that takes in an integer list and an integer and returns true if the integer is in the integer list
 def inIntList(l, i):
-    for x in l:
-        if x == i:
-            return True
-    return False
+    return i in l
 # print(inIntList([1,5,7,9,333], 8))    
 # print(inIntList([1,5,7,9,333], 9)) 
 
