@@ -45,14 +45,15 @@ def secondLargest(l):
 # Write a function that takes in an integer list and an integer and returns the integer list shifted to
 # the right by the number Ex. ([1,2,3,4,5,6], 4) ⇒ [3,4,5,6,1,2]
 def shiftRight(l, n):
-    ans = l[:]
-    n = n % len(l)
-    for i in range(len(l)):
-        if i + n < len(l):
-            ans[i + n] = l[i]
-        else:
-            ans[i + n - len(l)] = l[i] 
-    return ans
+    # ans = l[:]
+    # n = n % len(l)
+    # for i in range(len(l)):
+    #     if i + n < len(l):
+    #         ans[i + n] = l[i]
+    #     else:
+    #         ans[i + n - len(l)] = l[i] 
+    # return ans
+    return l[len(l)-n:] + l[:len(l)-n]
 # print(shiftRight([1,2,3,4,5,6], 4))
 
 # challenge questions
@@ -124,6 +125,13 @@ def shiftLeft(l, n):
 
 # not covered questions
 # 1. Prints out the 2D integer array in a grid-like format
+def print2D(L):
+    for x in L:
+        for y in x:
+            print(y, end=', ')
+        print('')
+# print2D([[33,55,66,7], [2,8,9], [77,33,22]])        
+
 # 2. Returns the ith row of a given 2D string array
 # 3. Returns the 2D integer array which is the sum of 2 input 2D integer arrays
 # 4. Checks to see if all the rows in the 2D integer array sum to a number given the number and 2D array 
