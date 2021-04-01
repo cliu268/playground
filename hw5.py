@@ -73,15 +73,15 @@ def isSubString(a, b):
     if len(a) == len(b):
         return True if a == b else False
     else:
-        return isSubString(a, b[:len(b)-1]) or isSubString(a, b[1:])
-# print(isSubString('abc', 'dflasjflkacoijoj'))
+        return isSubString(a, b[:-1]) or isSubString(a, b[1:])
+# print(isSubString('abc', 'dflasjflkabcoijoj'))
 
 # Q4 Given a string, prints it in reverse order. Ex: "abcd ef" => "fe dcba"
 def printReverse(s):
     if len(s) == 1:
         return s
     else:
-        return s[len(s)-1] + printReverse(s[:-1])
+        return s[-1] + printReverse(s[:-1])
 # print(printReverse('abcd ef'))
 
 # Q5 Given a string, returns True if it is a palindrome and False otherwise
@@ -97,3 +97,5 @@ def palindrome(s):
 # print(palindrome('asdfabbafdsa'))
         
 
+# print('abcdefg'[:len('abcdefg')-1]) # prints 'abcdef' no g
+# print('abcdefg'[len('abcdefg')-1])  # prints g
