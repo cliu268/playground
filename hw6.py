@@ -52,10 +52,13 @@ def isSubString(a, b):
 def myPow(a, b):
     if b == 0:
         return 1
+    elif b < 0:
+        return ZeroDivisionError if a == 0 else 1/myPow(a, -b)
     else:
         return a*myPow(a, b-1)
 # print(myPow(2,3))
 # print(myPow(3,6))
+# print(myPow(0, -5))
 
 # Write a function that takes in two strings of equal length (s1, s2) and returns the strings interleaved 
 # with each other, starting s1 first.
