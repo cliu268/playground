@@ -80,25 +80,32 @@ openfile = open('./data.txt', 'r')
 # all = openfile.read()
 # print(all)
 for line in openfile:
-    print(line)
+    print(line, end='')
 
 # Inside the email there should also be a numwins.csv file containing the number of wins I had in brawl stars on various days, read it into python!
-
+import pandas as pd
+df = pd.read_csv('numwins.csv')
+print(df)
+print(df.shape[0])
 
 # What is the mean number of wins that I had?
-
+print(df.mean())
 
 # How many data entries do I have in total?
-
+print(len(df))
 
 # What is the maximum number of wins that I have had in a day?
-
+print(df.max())
 
 # What is the minimum number of wins that I have had in a day?
-
+print(df.min())
 
 # Make a dictionary similar to the one I made in class:
 # Each key should be a multiple of 10 up to 100
 # Each value should represent the number of days that I had a win total between key-9 and key
 # Ex. The key-value pair {10:15} means that I had 15 days where I won between 1 and 10 times (inclusive)
-
+d = {}
+for i in range(1, 11):
+    d[i*10] = 0 # df[df.columns[0] < i*10 and df.columns[0] >= i*10 -9].value_counts()
+print(d)
+print(df[df.columns[0]].value_counts())
