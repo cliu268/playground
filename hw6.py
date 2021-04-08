@@ -77,16 +77,18 @@ def interleaveString(s1, s2):
 # Copy and paste a screenshot of your code that reads the file into python! 
 # Print out the contents of the txt file! What does it say?
 openfile = open('./data.txt', 'r')
-# all = openfile.read()
-# print(all)
-for line in openfile:
-    print(line, end='')
+all = openfile.read()
+print(all)
+# for line in openfile:
+#     print(line, end='')
 
 # Inside the email there should also be a numwins.csv file containing the number of wins I had in brawl stars on various days, read it into python!
 import pandas as pd
-df = pd.read_csv('numwins.csv')
-print(df)
-print(df.shape[0])
+df = pd.read_csv('numwins.csv', header=None)  # the csv file has no header, if you don't specify this, first value becomes column header
+# print(df)
+# print(df.head())
+# print(df.info())
+# print(df.shape[0])
 
 # What is the mean number of wins that I had?
 print(df.mean())
@@ -106,6 +108,13 @@ print(df.min())
 # Ex. The key-value pair {10:15} means that I had 15 days where I won between 1 and 10 times (inclusive)
 d = {}
 for i in range(1, 11):
-    d[i*10] = 0 # df[df.columns[0] < i*10 and df.columns[0] >= i*10 -9].value_counts()
+    d[i*10] = 0
+ds = df[df.columns[0]].value_counts()
+# print(ds.to_string()) 
+for i in ds.keys():
+    if i == 0: # don't count days with 0 wins
+        continue
+    index = 10 * ((i-1)//10 + 1)
+    d[index] += ds[i]
+    # print({'key': i, 'index': 10 * ((i-1)//10 + 1), 'wins': ds[i]})
 print(d)
-print(df[df.columns[0]].value_counts())
