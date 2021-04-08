@@ -94,7 +94,7 @@ df = pd.read_csv('numwins.csv', header=None)  # the csv file has no header, if y
 print(df.mean())
 
 # How many data entries do I have in total?
-print(len(df))
+print(df.size)
 
 # What is the maximum number of wins that I have had in a day?
 print(df.max())
@@ -109,7 +109,7 @@ print(df.min())
 d = {}
 for i in range(1, 11):
     d[i*10] = 0
-ds = df[df.columns[0]].value_counts()
+ds = df[0].value_counts()
 # print(ds.to_string()) 
 for i in ds.keys():
     if i == 0: # don't count days with 0 wins
