@@ -16,10 +16,11 @@
 #    Outputs: boolean
 #         The function should return True if the Entity has positive health and false otherwise. 
 class Entity:
-    def __init__(self, attack, defense, hitpoints):
+    def __init__(self, attack, defense, hitpoints, accuracy):
         self.attack=attack
         self.defense=defense
         self.hitpoints=hitpoints
+        self.accuracy=accuracy
 
     # def takeHit(self, hits):
     #     self.hitpoints -= hits
@@ -27,9 +28,14 @@ class Entity:
     # def getDefense(self):
     #     return self.defense
 
+    from random import choices
     def attackf(self, opponent):
         # opponent.takeHit(self.attack - opponent.getDefense())
-        opponent.hitpoints -= self.attack - opponent.defense
+        p = [0,1]
+        w = [1-self.accuracy, self.accuracy]
+
+        if random.choices(p, w) == [1]:
+            opponent.hitpoints -= self.attack - opponent.defense
 
     def heal(self):
         self.hitpoints += self.defense
@@ -86,16 +92,16 @@ def battle2(entity1, entity2):
         return False
 
 def main():
-    player1 = Entity(5, 2, 100)
-    player2 = Entity(5, 2, 100)
+    player1 = Entity(5, 2, 100, 0.6)
+    player2 = Entity(5, 2, 100, 0.8)
     # battle1
     if (battle1(player1, player2)):
         print("player1 wins battle1")
     else:
         print("player2 wins battle1")
     # battle2
-    player1 = Entity(5, 2, 100)
-    player2 = Entity(5, 2, 100)    
+    player1 = Entity(5, 2, 100, 0.6)
+    player2 = Entity(5, 2, 100, 0.8)    
     if (battle2(player1, player2)):
         print("player1 wins battle2")
     else:
