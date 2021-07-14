@@ -1,4 +1,3 @@
-# my new github access token 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
 # Reduce each of the following big O notations to its simplest form
 # O(n^3 + 2n^2) = O(n^3)
 # O(n) = O(n)
