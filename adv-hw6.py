@@ -58,9 +58,7 @@ print(squareRoot2(144))
 
 # 1,4,9,16,25,36 …
 # x(0) = 1
-# x(n) = (n+1)^2
-# OR if you want to be dumb you can also say the following:
-# x(n) = ((x(n-1) ** 0.5) + 1) ** 2
+# x(n) = x(n-1) + 2n + 1  ==> this is because x(n) = (n+1)^2, so the diff between x(n) and x(n-1) is (n+1)^2 - (n)^2 which is 2n+1
 
 # 0,1,1,2,3,5,8,13,21…
 # This is the fibonacci sequence, where each number is the sum of the previous two!
