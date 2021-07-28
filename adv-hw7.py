@@ -51,7 +51,7 @@ print(prefixList([3,4,5], [1,2,3,4,5,6]))
 def extraWeirdBunnies(n):
     if n==1:
         return 2
-    elif n % 6 == 0:
+    elif n == 6:
         return 4 + extraWeirdBunnies(n-1)
     elif n % 3 == 0:
         return 1 + extraWeirdBunnies(n-1)
@@ -59,7 +59,7 @@ def extraWeirdBunnies(n):
         return 3 + extraWeirdBunnies(n-1)
     else:
         return 2 + extraWeirdBunnies(n-1)
-print(extraWeirdBunnies(15)) # 2,3,1,3,2,4,2,3,1,3,2,4,2,3,1
+print(extraWeirdBunnies(15)) # 2,3,1,3,2,4,2,3,1,3,2,1,2,3,1
 
 # pruneString
 # Inputs: String s
